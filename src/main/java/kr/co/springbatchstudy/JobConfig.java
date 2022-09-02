@@ -29,7 +29,7 @@ public class JobConfig {
         return stepBuilderFactory.get("Test Step1")
                 .tasklet((contribution, chunkContext) -> {
                     System.out.println("=================");
-                    System.out.println("Test Spring Batch");
+                    System.out.println("Test Step1 Start");
                     System.out.println("=================");
                     return RepeatStatus.FINISHED;
                 })
