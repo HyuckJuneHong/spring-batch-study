@@ -32,15 +32,15 @@ public class JobConfig {
         return stepBuilderFactory.get("Test Step1")
                 .tasklet((contribution, chunkContext) -> {
 
-                    //이 방식을 주로 사용.
-                    JobParameters jobParameters = contribution.getStepExecution().getJobExecution().getJobParameters();
-                    jobParameters.getString("name");
-                    jobParameters.getLong("seq");
-                    jobParameters.getDate("date");
-                    jobParameters.getDouble("price");
-
-                    //동일한 값을 얻을 수는 있지만 Map으로 받는다. (즉, 값으로만 얻을 수 있음)
-                    Map<String, Object> mapJobParameters = chunkContext.getStepContext().getJobParameters();
+//                    //이 방식을 주로 사용.
+//                    JobParameters jobParameters = contribution.getStepExecution().getJobExecution().getJobParameters();
+//                    jobParameters.getString("name");
+//                    jobParameters.getLong("seq");
+//                    jobParameters.getDate("date");
+//                    jobParameters.getDouble("price");
+//
+//                    //동일한 값을 얻을 수는 있지만 Map으로 받는다. (즉, 값으로만 얻을 수 있음)
+//                    Map<String, Object> mapJobParameters = chunkContext.getStepContext().getJobParameters();
 
                     System.out.println("=================");
                     System.out.println("Test Step1 Start");
@@ -55,8 +55,10 @@ public class JobConfig {
         return stepBuilderFactory.get("Test Step2")
                 .tasklet((contribution, chunkContext) -> {
                     System.out.println("=================");
-                    System.out.println("Test Step2 Start");
+                    System.out.println("Test Step2 Failed");
                     System.out.println("=================");
+
+//                    throw new RuntimeException("step2 failed");
                     return RepeatStatus.FINISHED;
                 })
                 .build();
